@@ -16,10 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'  # Update to 18 if your project requires it
 
       - name: Install dependencies
         run: npm install
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Start server in the background
+        run: |
+          npm start &
+          npx wait-on http://localhost:3001
 
       - name: Run Cypress tests
         run: npx cypress run

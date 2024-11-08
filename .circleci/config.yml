@@ -18,7 +18,9 @@ jobs:
           command: npm run build
       - run:
           name: Start server in the background
-          command: npm start &
+          command: |
+            npm start &
+            sleep 5   # Add a small delay to give the server time to start
       - run:
           name: Wait for server to be ready
           command: npx wait-on http://localhost:3001
@@ -32,11 +34,12 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
+      - run:
+          name: Wait for server
+          command: npx wait-on http://localhost:3001
       - cypress/run:
           name: Run Cypress Component Tests
           cypress-command: npx cypress run --component
-          start: npm start
-          wait-on: http://localhost:3001
           config: baseUrl=http://localhost:3001
 
 workflows:
