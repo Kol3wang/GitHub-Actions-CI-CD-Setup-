@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Trigger Render Deployment
         run: |
           curl -X POST -d '' "https://api.render.com/deploy/srv-csmkuhjtq21c73ak4jmg?key=SL5WVW2KR00"
