@@ -16,6 +16,9 @@
     "cypress": "npx cypress open",                              
     "test": "npx cypress run --browser electron --headless"     
   },
+  "engines": {
+    "node": "18.x"                                           
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
